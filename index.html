@@ -3,300 +3,482 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prathamesh Shirguppe | IT Professional</title>
+    <title>Prathamesh Shirguppe | IT Professional & Developer</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Reset and Base Styles */
+        /* ===== VARIABLES & RESET ===== */
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #64748b;
+            --accent: #f59e0b;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --white: #ffffff;
+            --gray: #94a3b8;
+            --success: #10b981;
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 20px 40px -10px rgba(0, 0, 0, 0.15);
+            --border-radius: 12px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        :root {
-            --primary-color: #2c3e50;
-            --secondary-color: #3498db;
-            --accent-color: #e74c3c;
-            --text-color: #333;
-            --light-bg: #f8f9fa;
-            --white: #ffffff;
-            --shadow: 0 2px 10px rgba(0,0,0,0.1);
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            background-color: var(--light-bg);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            color: var(--dark);
+            background: var(--light);
+            overflow-x: hidden;
         }
 
         .container {
-            width: 90%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 2rem;
         }
 
         section {
-            padding: 5rem 0;
+            padding: 6rem 0;
         }
 
-        h1, h2, h3 {
-            color: var(--primary-color);
+        /* ===== TYPOGRAPHY ===== */
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         h2 {
-            font-size: 2rem;
-            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            color: var(--dark);
             position: relative;
-            padding-bottom: 0.5rem;
+            display: inline-block;
         }
 
         h2::after {
             content: '';
             position: absolute;
-            bottom: 0;
+            bottom: -10px;
             left: 0;
             width: 60px;
-            height: 3px;
-            background-color: var(--secondary-color);
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 2px;
         }
 
-        /* Navigation */
-        #navbar {
+        h3 {
+            font-size: 1.5rem;
+            color: var(--dark);
+        }
+
+        p {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        /* ===== NAVIGATION ===== */
+        .navbar {
             position: fixed;
             top: 0;
             width: 100%;
-            background: var(--white);
-            box-shadow: var(--shadow);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
             z-index: 1000;
-            transition: all 0.3s ease;
+            transition: var(--transition);
+        }
+
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: var(--shadow);
         }
 
         .nav-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 0;
+            padding: 1.5rem 2rem;
         }
 
-        .nav-logo {
+        .logo {
             font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--primary-color);
+            font-weight: 700;
+            color: var(--primary);
             text-decoration: none;
         }
 
         .nav-menu {
             display: flex;
             list-style: none;
+            gap: 2rem;
         }
 
         .nav-link {
-            padding: 0.5rem 1rem;
             text-decoration: none;
-            color: var(--primary-color);
+            color: var(--dark);
             font-weight: 500;
-            transition: color 0.3s;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: var(--transition);
+            position: relative;
         }
 
-        .nav-link:hover {
-            color: var(--secondary-color);
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+            transform: translateX(-50%);
         }
 
-        /* Hero Section */
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 80%;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--primary);
+        }
+
+        /* ===== HERO SECTION ===== */
         .hero {
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             align-items: center;
-            justify-content: center;
-            text-align: center;
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-            color: var(--white);
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            position: relative;
+            overflow: hidden;
         }
 
-        .hero-container {
-            max-width: 800px;
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.1) 0%, transparent 70%);
         }
 
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 0.5rem;
-            color: var(--white);
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
         }
 
-        .hero h2 {
-            font-size: 1.8rem;
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--secondary);
             margin-bottom: 1.5rem;
-            color: var(--white);
+            font-weight: 500;
         }
 
-        .hero h2::after {
-            display: none;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            background: var(--white);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            box-shadow: var(--shadow);
             margin-bottom: 2rem;
-            opacity: 0.9;
+            font-weight: 500;
+            color: var(--primary);
+        }
+
+        .hero-badge i {
+            margin-right: 0.5rem;
+            color: var(--accent);
         }
 
         .social-links {
             display: flex;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
             justify-content: center;
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .social-links a {
-            color: var(--white);
-            font-size: 1.5rem;
-            transition: transform 0.3s, color 0.3s;
-        }
-
-        .social-links a:hover {
-            transform: translateY(-3px);
-            color: var(--accent-color);
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 12px 30px;
-            background-color: var(--accent-color);
-            color: var(--white);
+            width: 50px;
+            height: 50px;
+            background: var(--white);
+            border-radius: 12px;
+            color: var(--dark);
             text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: background-color 0.3s, transform 0.3s;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
         }
 
-        .cta-button:hover {
-            background-color: #c0392b;
+        .social-link:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+            color: var(--primary);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--white);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--dark);
+            border: 2px solid var(--gray);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary);
+            color: var(--primary);
             transform: translateY(-2px);
         }
 
-        /* About Section */
-        .about {
-            background-color: var(--white);
+        /* ===== SECTION STYLES ===== */
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
         }
 
-        .about-content {
+        .section-header h2 {
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            font-size: 1.125rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ===== EDUCATION ===== */
+        .education-timeline {
+            position: relative;
             max-width: 800px;
             margin: 0 auto;
-            text-align: center;
         }
 
-        /* Education Section */
-        .education {
-            background-color: var(--light-bg);
+        .education-timeline::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--primary), var(--accent));
         }
 
-        .education-item {
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            padding-left: 80px;
+        }
+
+        .timeline-icon {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 60px;
+            height: 60px;
             background: var(--white);
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            border-radius: 5px;
-            box-shadow: var(--shadow);
+            border-radius: 50%;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-        }
-
-        .education-details h3 {
-            margin-bottom: 0.5rem;
-        }
-
-        .education-year {
-            color: var(--secondary-color);
-            font-weight: bold;
-        }
-
-        /* Experience Section */
-        .experience {
-            background-color: var(--white);
-        }
-
-        .experience-item {
-            background: var(--light-bg);
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            border-radius: 5px;
+            justify-content: center;
             box-shadow: var(--shadow);
+            border: 3px solid var(--primary);
+        }
+
+        .timeline-content {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .timeline-year {
+            display: inline-block;
+            background: var(--primary);
+            color: var(--white);
+            padding: 0.25rem 1rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        /* ===== EXPERIENCE ===== */
+        .experience-grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .experience-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border-left: 4px solid var(--primary);
+        }
+
+        .experience-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
         }
 
         .experience-header {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            justify-content: between;
+            align-items: flex-start;
             margin-bottom: 1rem;
         }
 
         .experience-title {
-            font-weight: bold;
-            color: var(--primary-color);
+            font-size: 1.25rem;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-company {
+            color: var(--primary);
+            font-weight: 600;
         }
 
         .experience-date {
-            color: var(--secondary-color);
-            font-weight: bold;
+            background: var(--accent);
+            color: var(--white);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
         }
 
-        /* Projects Section */
-        .projects {
-            background-color: var(--light-bg);
-        }
-
+        /* ===== PROJECTS ===== */
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2rem;
         }
 
         .project-card {
             background: var(--white);
-            border-radius: 5px;
+            border-radius: var(--border-radius);
             overflow: hidden;
             box-shadow: var(--shadow);
-            transition: transform 0.3s;
+            transition: var(--transition);
         }
 
         .project-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .project-image {
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 3rem;
         }
 
         .project-content {
-            padding: 1.5rem;
+            padding: 2rem;
         }
 
-        .project-title {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-            color: var(--primary-color);
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
         }
 
-        /* Publications Section */
-        .publications {
-            background-color: var(--white);
+        .tech-tag {
+            background: var(--light);
+            color: var(--primary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
         }
 
-        .publication-item {
-            background: var(--light-bg);
-            padding: 1.5rem;
-            border-radius: 5px;
+        /* ===== PUBLICATIONS ===== */
+        .publication-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: var(--border-radius);
             box-shadow: var(--shadow);
+            max-width: 800px;
+            margin: 0 auto;
+            border-top: 4px solid var(--accent);
         }
 
         .publication-date {
-            color: var(--secondary-color);
-            font-weight: bold;
-            margin-bottom: 0.5rem;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 1rem;
         }
 
-        /* Contact Section */
+        /* ===== CONTACT ===== */
         .contact {
-            background-color: var(--primary-color);
+            background: linear-gradient(135deg, var(--dark) 0%, #334155 100%);
             color: var(--white);
-            text-align: center;
         }
 
         .contact h2 {
@@ -304,93 +486,121 @@
         }
 
         .contact h2::after {
-            background-color: var(--accent-color);
+            background: var(--accent);
         }
 
-        .contact-links {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
-            margin-top: 2rem;
+            margin-top: 3rem;
         }
 
-        .contact-link {
+        .contact-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            border-radius: 50%;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            color: var(--white);
-            text-decoration: none;
-            transition: color 0.3s;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
         }
 
-        .contact-link:hover {
-            color: var(--accent-color);
-        }
-
-        /* Footer */
-        footer {
-            background-color: #1a252f;
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--dark);
             color: var(--white);
             text-align: center;
-            padding: 2rem 0;
+            padding: 3rem 0;
         }
 
-        /* Responsive Design */
+        /* ===== RESPONSIVE DESIGN ===== */
         @media (max-width: 768px) {
-            .nav-menu {
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: var(--white);
-                display: none;
+            .container {
+                padding: 0 1rem;
             }
 
-            .nav-menu.active {
-                display: flex;
-            }
-
-            .hero h1 {
+            h1 {
                 font-size: 2.5rem;
             }
 
-            .hero h2 {
-                font-size: 1.5rem;
+            h2 {
+                font-size: 2rem;
             }
 
-            .education-item {
+            .nav-menu {
+                display: none;
+            }
+
+            .hero-content {
+                text-align: center;
+            }
+
+            .cta-buttons {
                 flex-direction: column;
-                align-items: flex-start;
+                align-items: center;
             }
 
-            .education-year {
-                margin-top: 0.5rem;
+            .btn {
+                width: 100%;
+                justify-content: center;
             }
 
-            .experience-header {
-                flex-direction: column;
-                align-items: flex-start;
+            .timeline-item {
+                padding-left: 60px;
             }
 
-            .experience-date {
-                margin-top: 0.5rem;
+            .timeline-icon {
+                width: 40px;
+                height: 40px;
             }
 
-            .contact-links {
-                flex-direction: column;
-                gap: 1rem;
+            .projects-grid {
+                grid-template-columns: 1fr;
             }
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.6s ease-out;
         }
     </style>
 </head>
 <body>
     <!-- Navigation -->
-    <nav id="navbar">
+    <nav class="navbar">
         <div class="container nav-container">
-            <a href="#home" class="nav-logo">Prathamesh Shirguppe</a>
+            <a href="#home" class="logo">Prathamesh</a>
             <ul class="nav-menu">
+                <li><a href="#home" class="nav-link active">Home</a></li>
                 <li><a href="#about" class="nav-link">About</a></li>
                 <li><a href="#education" class="nav-link">Education</a></li>
                 <li><a href="#experience" class="nav-link">Experience</a></li>
@@ -403,29 +613,55 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero">
-        <div class="hero-container">
-            <h1>Prathamesh Shirguppe</h1>
-            <h2>IT Professional & Developer</h2>
-            <p>Diploma in Computer Engineering | B.Tech in Information Technology</p>
-            
-            <div class="social-links">
-                <a href="https://github.com/Prathameshds" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="https://linkedin.com/in/Prathamesh Shirguppe" target="_blank"><i class="fab fa-linkedin"></i></a>
-                <a href="mailto:prathameshdshirguppe@gmail.com"><i class="fas fa-envelope"></i></a>
-                <a href="tel:+919373186664"><i class="fas fa-phone"></i></a>
+        <div class="container">
+            <div class="hero-content fade-in">
+                <div class="hero-badge">
+                    <i class="fas fa-graduation-cap"></i>
+                    IT Professional & Developer
+                </div>
+                <h1>Prathamesh Shirguppe</h1>
+                <p class="hero-subtitle">Diploma in Computer Engineering | B.Tech in Information Technology | Mobile & Web Developer</p>
+                <p>Building innovative solutions with modern technologies and creating impactful digital experiences.</p>
+                
+                <div class="social-links">
+                    <a href="https://github.com/Prathameshds" class="social-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/prathamesh-shirguppe" class="social-link" target="_blank">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="mailto:prathameshdshirguppe@gmail.com" class="social-link">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                    <a href="tel:+919373186664" class="social-link">
+                        <i class="fas fa-phone"></i>
+                    </a>
+                </div>
+
+                <div class="cta-buttons">
+                    <a href="#projects" class="btn btn-primary">
+                        <i class="fas fa-code"></i>
+                        View My Work
+                    </a>
+                    <a href="#contact" class="btn btn-secondary">
+                        <i class="fas fa-paper-plane"></i>
+                        Get In Touch
+                    </a>
+                </div>
             </div>
-            
-            <a href="#projects" class="cta-button">View My Work</a>
         </div>
     </section>
 
     <!-- About Section -->
     <section id="about" class="about">
         <div class="container">
-            <h2>About Me</h2>
-            <div class="about-content">
-                <p>I'm Prathamesh Shirguppe, completed my diploma education in computer engineering at Rajarambapu Institute of Technology with 88.80% aggregate and now I'm pursuing B.Tech in Information Technology from the same college.</p>
-                <p>I have experience in mobile application development, web development, and basic knowledge of ethical hacking concepts.</p>
+            <div class="section-header">
+                <h2>About Me</h2>
+                <p>Passionate developer with expertise in mobile and web technologies, dedicated to creating efficient and user-friendly applications.</p>
+            </div>
+            <div class="about-content" style="max-width: 800px; margin: 0 auto; text-align: center;">
+                <p>I completed my diploma education in Computer Engineering at Rajarambapu Institute of Technology with 88.80% aggregate and currently pursuing B.Tech in Information Technology from the same institution.</p>
+                <p>With hands-on experience in Android development, web technologies, and emerging fields like ethical hacking, I'm constantly expanding my skill set to tackle new challenges in the tech industry.</p>
             </div>
         </div>
     </section>
@@ -433,32 +669,46 @@
     <!-- Education Section -->
     <section id="education" class="education">
         <div class="container">
-            <h2>Education</h2>
-            
-            <div class="education-item">
-                <div class="education-details">
-                    <h3>B.Tech in Information Technology</h3>
-                    <p>Rajarambapu Institute of Technology</p>
-                </div>
-                <div class="education-year">2025 - Present</div>
+            <div class="section-header">
+                <h2>Education</h2>
+                <p>My academic journey and qualifications</p>
             </div>
-            
-            <div class="education-item">
-                <div class="education-details">
-                    <h3>Diploma in Computer Engineering</h3>
-                    <p>Rajarambapu Institute of Technology</p>
-                    <p>Aggregate: 88.80%</p>
+            <div class="education-timeline">
+                <div class="timeline-item fade-in">
+                    <div class="timeline-icon">
+                        <i class="fas fa-university" style="color: var(--primary);"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <span class="timeline-year">2025 - Present</span>
+                        <h3>B.Tech in Information Technology</h3>
+                        <p class="experience-company">Rajarambapu Institute of Technology</p>
+                        <p>Currently pursuing Bachelor's degree in Information Technology</p>
+                    </div>
                 </div>
-                <div class="education-year">2022 - 2025</div>
-            </div>
-            
-            <div class="education-item">
-                <div class="education-details">
-                    <h3>Class 10th SSC</h3>
-                    <p>Annasaheb Dange Public School, Ashta</p>
-                    <p>Percentage: 94.20%</p>
+
+                <div class="timeline-item fade-in">
+                    <div class="timeline-icon">
+                        <i class="fas fa-graduation-cap" style="color: var(--primary);"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <span class="timeline-year">2022 - 2025</span>
+                        <h3>Diploma in Computer Engineering</h3>
+                        <p class="experience-company">Rajarambapu Institute of Technology</p>
+                        <p>Aggregate: 88.80% | Specialized in software development and computer systems</p>
+                    </div>
                 </div>
-                <div class="education-year">2022</div>
+
+                <div class="timeline-item fade-in">
+                    <div class="timeline-icon">
+                        <i class="fas fa-school" style="color: var(--primary);"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <span class="timeline-year">2022</span>
+                        <h3>Class 10th SSC</h3>
+                        <p class="experience-company">Annasaheb Dange Public School, Ashta</p>
+                        <p>Percentage: 94.20% | Foundation in science and mathematics</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -466,38 +716,43 @@
     <!-- Experience Section -->
     <section id="experience" class="experience">
         <div class="container">
-            <h2>Work Experience</h2>
-            
-            <div class="experience-item">
-                <div class="experience-header">
-                    <div class="experience-title">Mobile Application Development Intern</div>
-                    <div class="experience-date">July 2024 - Aug 2024</div>
-                </div>
-                <p>Intern at Techspot Infotech, Sangli for Mobile Application Development using Android Studio.</p>
+            <div class="section-header">
+                <h2>Work Experience</h2>
+                <p>My professional journey and internships</p>
             </div>
-            
-            <div class="experience-item">
-                <div class="experience-header">
-                    <div class="experience-title">Android Developer (Virtual Internship)</div>
-                    <div class="experience-date">Sep 2024 - Oct 2024</div>
+            <div class="experience-grid">
+                <div class="experience-card fade-in">
+                    <div class="experience-header">
+                        <div>
+                            <h3 class="experience-title">Mobile Application Development Intern</h3>
+                            <p class="experience-company">Techspot Infotech, Sangli</p>
+                        </div>
+                        <span class="experience-date">Jul 2024 - Aug 2024</span>
+                    </div>
+                    <p>Developed mobile applications using Android Studio, gaining hands-on experience in Java, XML, and modern mobile development practices.</p>
                 </div>
-                <p>Familiar with Android Studio for Application Development with XML and Java, Google Certified Android Developer (Virtual Internship with AICTE).</p>
-            </div>
-            
-            <div class="experience-item">
-                <div class="experience-header">
-                    <div class="experience-title">Academic Programming</div>
-                    <div class="experience-date">2022 - 2023</div>
+
+                <div class="experience-card fade-in">
+                    <div class="experience-header">
+                        <div>
+                            <h3 class="experience-title">Android Developer (Virtual Internship)</h3>
+                            <p class="experience-company">Google Certified - AICTE</p>
+                        </div>
+                        <span class="experience-date">Sep 2024 - Oct 2024</span>
+                    </div>
+                    <p>Completed intensive virtual internship focusing on Android Studio, XML, Java, and Google's development standards for mobile applications.</p>
                 </div>
-                <p>Basic programming knowledge in HTML, CSS, JavaScript, C, C++, Java, and Python.</p>
-            </div>
-            
-            <div class="experience-item">
-                <div class="experience-header">
-                    <div class="experience-title">Ethical Hacking Concepts</div>
-                    <div class="experience-date">Present</div>
+
+                <div class="experience-card fade-in">
+                    <div class="experience-header">
+                        <div>
+                            <h3 class="experience-title">Ethical Hacking & Security</h3>
+                            <p class="experience-company">Self-Study & Research</p>
+                        </div>
+                        <span class="experience-date">Present</span>
+                    </div>
+                    <p>Exploring ethical hacking concepts including testing methodologies (White, Black, Grey box), teaming strategies, and reconnaissance techniques.</p>
                 </div>
-                <p>Basic knowledge about Ethical Hacking concepts like Testing Approach (White, Black, Grey box testing), Teaming (Red, Blue, Purple), Reconnaissance (Dorking, WHOIS, Social Media).</p>
             </div>
         </div>
     </section>
@@ -505,27 +760,56 @@
     <!-- Projects Section -->
     <section id="projects" class="projects">
         <div class="container">
-            <h2>Projects</h2>
-            
+            <div class="section-header">
+                <h2>Projects</h2>
+                <p>Some of my notable work and personal projects</p>
+            </div>
             <div class="projects-grid">
-                <div class="project-card">
+                <div class="project-card fade-in">
+                    <div class="project-image">
+                        <i class="fas fa-address-book"></i>
+                    </div>
                     <div class="project-content">
-                        <h3 class="project-title">BuildLink</h3>
-                        <p>Professional contact directory Android app using Java, XML, and Firebase for data management with Gradle dependency management.</p>
+                        <h3>BuildLink</h3>
+                        <p>Professional contact directory Android application for efficient contact management and networking.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Java</span>
+                            <span class="tech-tag">XML</span>
+                            <span class="tech-tag">Firebase</span>
+                            <span class="tech-tag">Android</span>
+                        </div>
                     </div>
                 </div>
-                
-                <div class="project-card">
+
+                <div class="project-card fade-in">
+                    <div class="project-image">
+                        <i class="fas fa-car"></i>
+                    </div>
                     <div class="project-content">
-                        <h3 class="project-title">Car Driver Management</h3>
-                        <p>Web app with real-time dashboards, fare calculation, and multi-language support using Firebase for data persistence and reporting.</p>
+                        <h3>Car Driver Management</h3>
+                        <p>Web application with real-time dashboards and fare calculation for efficient driver management.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Web App</span>
+                            <span class="tech-tag">Firebase</span>
+                            <span class="tech-tag">Multi-language</span>
+                            <span class="tech-tag">Dashboard</span>
+                        </div>
                     </div>
                 </div>
-                
-                <div class="project-card">
+
+                <div class="project-card fade-in">
+                    <div class="project-image">
+                        <i class="fas fa-building"></i>
+                    </div>
                     <div class="project-content">
-                        <h3 class="project-title">BuildMaster Pro</h3>
-                        <p>Construction contract management web app with resource tracking, financial dashboards, and automated PDF/Excel reporting using Firebase.</p>
+                        <h3>BuildMaster Pro</h3>
+                        <p>Comprehensive construction contract management system with automated reporting features.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Web App</span>
+                            <span class="tech-tag">Firebase</span>
+                            <span class="tech-tag">PDF/Excel</span>
+                            <span class="tech-tag">Dashboard</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -535,11 +819,16 @@
     <!-- Publications Section -->
     <section id="publications" class="publications">
         <div class="container">
-            <h2>Publications</h2>
-            
-            <div class="publication-item">
-                <div class="publication-date">3 April 2025</div>
-                <p>"BuildLink: Professions Contact Directory", International Journal of Advanced Research in Science, Communication and Technology (IJARSCT), Volume 5, Issue 3, April 2025, ISSN: 2581-9429, DOI: 10.48175/IJARSCT-25032</p>
+            <div class="section-header">
+                <h2>Publications</h2>
+                <p>My research contributions and academic publications</p>
+            </div>
+            <div class="publication-card fade-in">
+                <div class="publication-date">April 3, 2025</div>
+                <h3>BuildLink: Professional Contact Directory</h3>
+                <p>International Journal of Advanced Research in Science, Communication and Technology (IJARSCT)</p>
+                <p><strong>Volume 5, Issue 3</strong> | ISSN: 2581-9429 | DOI: 10.48175/IJARSCT-25032</p>
+                <p style="margin-top: 1rem; font-style: italic;">Research paper on mobile application development for professional networking and contact management.</p>
             </div>
         </div>
     </section>
@@ -547,74 +836,122 @@
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
-            <h2>Contact Me</h2>
-            <p>Feel free to reach out for opportunities or collaborations</p>
-            
-            <div class="contact-links">
-                <a href="mailto:prathameshdshirguppe@gmail.com" class="contact-link">
-                    <i class="fas fa-envelope"></i>
-                    <span>prathameshdshirguppe@gmail.com</span>
-                </a>
-                
-                <a href="tel:+919373186664" class="contact-link">
-                    <i class="fas fa-phone"></i>
-                    <span>+91 9373186664</span>
-                </a>
-                
-                <a href="https://github.com/Prathameshds" target="_blank" class="contact-link">
-                    <i class="fab fa-github"></i>
-                    <span>GitHub</span>
-                </a>
-                
-                <a href="https://linkedin.com/in/Prathamesh Shirguppe" target="_blank" class="contact-link">
-                    <i class="fab fa-linkedin"></i>
-                    <span>LinkedIn</span>
-                </a>
+            <div class="section-header">
+                <h2>Get In Touch</h2>
+                <p>Let's discuss opportunities and collaborations</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-card fade-in">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3>Email</h3>
+                    <p>prathameshdshirguppe@gmail.com</p>
+                    <a href="mailto:prathameshdshirguppe@gmail.com" style="color: var(--accent); text-decoration: none;">Send Message</a>
+                </div>
+
+                <div class="contact-card fade-in">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <h3>Phone</h3>
+                    <p>+91 9373186664</p>
+                    <a href="tel:+919373186664" style="color: var(--accent); text-decoration: none;">Call Now</a>
+                </div>
+
+                <div class="contact-card fade-in">
+                    <div class="contact-icon">
+                        <i class="fab fa-linkedin"></i>
+                    </div>
+                    <h3>LinkedIn</h3>
+                    <p>Connect professionally</p>
+                    <a href="https://linkedin.com/in/prathamesh-shirguppe" style="color: var(--accent); text-decoration: none;" target="_blank">View Profile</a>
+                </div>
+
+                <div class="contact-card fade-in">
+                    <div class="contact-icon">
+                        <i class="fab fa-github"></i>
+                    </div>
+                    <h3>GitHub</h3>
+                    <p>Explore my projects</p>
+                    <a href="https://github.com/Prathameshds" style="color: var(--accent); text-decoration: none;" target="_blank">View Profile</a>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer>
+    <footer class="footer">
         <div class="container">
             <p>&copy; 2024 Prathamesh Shirguppe. All Rights Reserved.</p>
-            <p>Last updated: December 2024</p>
+            <p style="margin-top: 0.5rem; color: var(--gray);">Built with passion and dedication</p>
         </div>
     </footer>
 
     <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if(targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
                     });
                 }
             });
         });
 
-        // Navbar background change on scroll
+        // Active navigation link highlighting
         window.addEventListener('scroll', function() {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 100) {
-                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
-                navbar.style.backdropFilter = 'blur(10px)';
-            } else {
-                navbar.style.background = '#fff';
-                navbar.style.backdropFilter = 'none';
-            }
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 100)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
         });
 
-        // Mobile menu toggle (simplified version)
-        // You can enhance this with a proper hamburger menu if needed
+        // Fade-in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
     </script>
 </body>
 </html>
