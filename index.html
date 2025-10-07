@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prathamesh Shirguppe | IT Professional</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --text-color: #333;
+            --light-bg: #f8f9fa;
+            --white: #ffffff;
+            --shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 5rem 0;
+        }
+
+        h1, h2, h3 {
+            color: var(--primary-color);
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--secondary-color);
+        }
+
+        /* Navigation */
+        #navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--white);
+            box-shadow: var(--shadow);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-link {
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: var(--white);
+        }
+
+        .hero-container {
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--white);
+        }
+
+        .hero h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--white);
+        }
+
+        .hero h2::after {
+            display: none;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-links a {
+            color: var(--white);
+            font-size: 1.5rem;
+            transition: transform 0.3s, color 0.3s;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-3px);
+            color: var(--accent-color);
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--accent-color);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .cta-button:hover {
+            background-color: #c0392b;
+            transform: translateY(-2px);
+        }
+
+        /* About Section */
+        .about {
+            background-color: var(--white);
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        /* Education Section */
+        .education {
+            background-color: var(--light-bg);
+        }
+
+        .education-item {
+            background: var(--white);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 5px;
+            box-shadow: var(--shadow);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .education-details h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .education-year {
+            color: var(--secondary-color);
+            font-weight: bold;
+        }
+
+        /* Experience Section */
+        .experience {
+            background-color: var(--white);
+        }
+
+        .experience-item {
+            background: var(--light-bg);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 5px;
+            box-shadow: var(--shadow);
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .experience-title {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .experience-date {
+            color: var(--secondary-color);
+            font-weight: bold;
+        }
+
+        /* Projects Section */
+        .projects {
+            background-color: var(--light-bg);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--white);
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        /* Publications Section */
+        .publications {
+            background-color: var(--white);
+        }
+
+        .publication-item {
+            background: var(--light-bg);
+            padding: 1.5rem;
+            border-radius: 5px;
+            box-shadow: var(--shadow);
+        }
+
+        .publication-date {
+            color: var(--secondary-color);
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .contact h2 {
+            color: var(--white);
+        }
+
+        .contact h2::after {
+            background-color: var(--accent-color);
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-link:hover {
+            color: var(--accent-color);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #1a252f;
+            color: var(--white);
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--white);
+                display: none;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero h2 {
+                font-size: 1.5rem;
+            }
+
+            .education-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .education-year {
+                margin-top: 0.5rem;
+            }
+
+            .experience-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .experience-date {
+                margin-top: 0.5rem;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="container nav-container">
+            <a href="#home" class="nav-logo">Prathamesh Shirguppe</a>
+            <ul class="nav-menu">
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#education" class="nav-link">Education</a></li>
+                <li><a href="#experience" class="nav-link">Experience</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#publications" class="nav-link">Publications</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <h1>Prathamesh Shirguppe</h1>
+            <h2>IT Professional & Developer</h2>
+            <p>Diploma in Computer Engineering | B.Tech in Information Technology</p>
+            
+            <div class="social-links">
+                <a href="https://github.com/Prathameshds" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://linkedin.com/in/Prathamesh Shirguppe" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="mailto:prathameshdshirguppe@gmail.com"><i class="fas fa-envelope"></i></a>
+                <a href="tel:+919373186664"><i class="fas fa-phone"></i></a>
+            </div>
+            
+            <a href="#projects" class="cta-button">View My Work</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <p>I'm Prathamesh Shirguppe, completed my diploma education in computer engineering at Rajarambapu Institute of Technology with 88.80% aggregate and now I'm pursuing B.Tech in Information Technology from the same college.</p>
+                <p>I have experience in mobile application development, web development, and basic knowledge of ethical hacking concepts.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="education">
+        <div class="container">
+            <h2>Education</h2>
+            
+            <div class="education-item">
+                <div class="education-details">
+                    <h3>B.Tech in Information Technology</h3>
+                    <p>Rajarambapu Institute of Technology</p>
+                </div>
+                <div class="education-year">2025 - Present</div>
+            </div>
+            
+            <div class="education-item">
+                <div class="education-details">
+                    <h3>Diploma in Computer Engineering</h3>
+                    <p>Rajarambapu Institute of Technology</p>
+                    <p>Aggregate: 88.80%</p>
+                </div>
+                <div class="education-year">2022 - 2025</div>
+            </div>
+            
+            <div class="education-item">
+                <div class="education-details">
+                    <h3>Class 10th SSC</h3>
+                    <p>Annasaheb Dange Public School, Ashta</p>
+                    <p>Percentage: 94.20%</p>
+                </div>
+                <div class="education-year">2022</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience">
+        <div class="container">
+            <h2>Work Experience</h2>
+            
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div class="experience-title">Mobile Application Development Intern</div>
+                    <div class="experience-date">July 2024 - Aug 2024</div>
+                </div>
+                <p>Intern at Techspot Infotech, Sangli for Mobile Application Development using Android Studio.</p>
+            </div>
+            
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div class="experience-title">Android Developer (Virtual Internship)</div>
+                    <div class="experience-date">Sep 2024 - Oct 2024</div>
+                </div>
+                <p>Familiar with Android Studio for Application Development with XML and Java, Google Certified Android Developer (Virtual Internship with AICTE).</p>
+            </div>
+            
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div class="experience-title">Academic Programming</div>
+                    <div class="experience-date">2022 - 2023</div>
+                </div>
+                <p>Basic programming knowledge in HTML, CSS, JavaScript, C, C++, Java, and Python.</p>
+            </div>
+            
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div class="experience-title">Ethical Hacking Concepts</div>
+                    <div class="experience-date">Present</div>
+                </div>
+                <p>Basic knowledge about Ethical Hacking concepts like Testing Approach (White, Black, Grey box testing), Teaming (Red, Blue, Purple), Reconnaissance (Dorking, WHOIS, Social Media).</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2>Projects</h2>
+            
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">BuildLink</h3>
+                        <p>Professional contact directory Android app using Java, XML, and Firebase for data management with Gradle dependency management.</p>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">Car Driver Management</h3>
+                        <p>Web app with real-time dashboards, fare calculation, and multi-language support using Firebase for data persistence and reporting.</p>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">BuildMaster Pro</h3>
+                        <p>Construction contract management web app with resource tracking, financial dashboards, and automated PDF/Excel reporting using Firebase.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Publications Section -->
+    <section id="publications" class="publications">
+        <div class="container">
+            <h2>Publications</h2>
+            
+            <div class="publication-item">
+                <div class="publication-date">3 April 2025</div>
+                <p>"BuildLink: Professions Contact Directory", International Journal of Advanced Research in Science, Communication and Technology (IJARSCT), Volume 5, Issue 3, April 2025, ISSN: 2581-9429, DOI: 10.48175/IJARSCT-25032</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Contact Me</h2>
+            <p>Feel free to reach out for opportunities or collaborations</p>
+            
+            <div class="contact-links">
+                <a href="mailto:prathameshdshirguppe@gmail.com" class="contact-link">
+                    <i class="fas fa-envelope"></i>
+                    <span>prathameshdshirguppe@gmail.com</span>
+                </a>
+                
+                <a href="tel:+919373186664" class="contact-link">
+                    <i class="fas fa-phone"></i>
+                    <span>+91 9373186664</span>
+                </a>
+                
+                <a href="https://github.com/Prathameshds" target="_blank" class="contact-link">
+                    <i class="fab fa-github"></i>
+                    <span>GitHub</span>
+                </a>
+                
+                <a href="https://linkedin.com/in/Prathamesh Shirguppe" target="_blank" class="contact-link">
+                    <i class="fab fa-linkedin"></i>
+                    <span>LinkedIn</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Prathamesh Shirguppe. All Rights Reserved.</p>
+            <p>Last updated: December 2024</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Navbar background change on scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.backdropFilter = 'blur(10px)';
+            } else {
+                navbar.style.background = '#fff';
+                navbar.style.backdropFilter = 'none';
+            }
+        });
+
+        // Mobile menu toggle (simplified version)
+        // You can enhance this with a proper hamburger menu if needed
+    </script>
+</body>
+</html>
